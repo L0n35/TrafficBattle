@@ -1,0 +1,222 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#game {
+    margin: auto;
+    width: 1000px;
+    height: 500px;
+    overflow: hidden;
+    border: 5px solid black;
+    background: linear-gradient(
+    to top,
+    green 0%,
+    green 19%,
+    white 19%,
+    white 20%,
+    gray 20%,
+    gray 80%,
+    white 80%,
+    white 81%, 
+    green 81%,
+    green 100%
+  );
+}
+
+#character {
+    z-index: 9;
+    /* background-color: limegreen; */
+    width: 200px;
+    height: 100px;
+    left: 200px;
+    position: relative;
+    right: 0px;
+    /* border-radius: 30px; */
+    /* top: 123; */
+}
+.start{
+    top: 200px;
+}
+.animateLeftMiddle {
+    animation: leftMiddle 100ms;
+    top: 200px;
+}
+.animateMiddleRight {
+    animation: middleRight 100ms;
+    top: 300px;
+}
+.animateRightMiddle {
+    animation: rightMiddle 100ms;
+    top: 201px;
+}
+.animateMiddleLeft {
+    animation: middleLeft 100ms ;
+    top: 100px;
+}
+
+.car {
+    z-index: 10;
+    width: 200px;
+    height: 100px;
+}
+
+#block {
+    z-index: 9;
+    width: 200px;
+    height: 100px;
+    /* background-color: red; */
+    position:relative;
+    left: 1000px;
+}
+.trafficLeft {
+    top: 0px;
+}
+.trafficMiddle {
+    top: 100px;
+}
+.trafficRight {
+    top: 200px;
+}
+.speed1 {
+    animation: block 2000ms linear;
+}
+.speed2 {
+    animation: block 1500ms infinite linear;
+}
+.speed3 {
+    animation: block 1000ms infinite linear;
+}
+.speed4 {
+    animation: block 750ms infinite linear;
+}
+.speed5 {
+    animation: block 500ms infinite linear;
+}
+
+
+.lane {
+    z-index: 0;
+    position: relative;
+    width: 500px;
+    height: 4px;
+    /* background-color: white; */
+    /* background-color: linear-gradient(
+        to right, 
+        white 0%,
+        white 50%,
+        black 50%,
+        black 100%
+    ); */
+    background: linear-gradient(
+        to right,
+        gray 0%,
+        gray 10%,
+        white 10%,
+        white 20%,
+        gray 20%,
+        gray 30%,
+        white 30%,
+        white 40%,
+        gray 40%,
+        gray 50%, 
+        white 50%,
+        white 60%,
+        gray 60%,
+        gray 70%,
+        white 70%,
+        white 80%,
+        gray 80%,
+        gray 90%,
+        white 90%,
+        white 100%
+        
+    );
+    animation: laneLines 2s infinite linear;
+}
+
+.tree {
+    z-index: 0;
+    width: 30px;
+    height: 50px;
+    position: relative;
+    animation: laneLines 2s infinite linear;
+}
+
+@keyframes block {
+    0%{left:1000px;}
+    100%{left:-250px;}
+}
+
+@keyframes jump {
+    0%{top: 150px;}
+    30%{top: 100px;}
+    70%{top: 100px;}
+    100%{top: 150px;}
+}
+
+@keyframes leftMiddle {
+    0%{top: 100px;}
+    100%{top: 200px;}
+}
+
+@keyframes middleRight {
+    0%{top: 200px;}
+    100%{top: 300px;}
+}
+
+@keyframes rightMiddle {
+    0%{top: 300px;}
+    100%{top: 200px;}
+}
+
+@keyframes middleLeft {
+    0%{top: 200px;}
+    100%{top: 100px;}
+}
+
+@keyframes laneLines {
+    0%{left:1000px;}
+    100%{left:-1000px;}
+}
+
+.gameOver {
+    margin: auto;
+    width: 1000px;
+    height: 500px;
+    background: gray;
+    overflow: hidden;
+    border: 5px solid black
+}
+
+#header {
+    margin: auto;
+    width: 1000px;
+    border-top: 5px solid black;
+    border-right: 5px solid black;
+    border-left: 5px solid black;
+}
+
+#footer {
+    margin: auto;
+    width: 1000px;
+    border-bottom: 5px solid black;
+    border-right: 5px solid black;
+    border-left: 5px solid black;
+}
+
+.play {
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    top: 330px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    background: white;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    border: 5px solid black;
+}
