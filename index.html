@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Traffic Battle</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
 </head>
 <body>
@@ -11,8 +11,8 @@
         <h1 style="font-family: Anton; text-align: center; font-size: 50px;">Traffic Battle</h1>
     </div>
     <div id="game">
-        <div id="character"><img src="car3.png" class="car"></div>
-        <div id="block"><img src="car2.png" class="car"></div>
+        <div id="character"><img src="static/car3.png" class="car"></div>
+        <div id="block"><img src="static/car2.png" class="car"></div>
 
         <div class="lane" style="top: -2px; animation-delay: 1500ms;"></div>
         <div class="lane" style="top: -6px; animation-delay: 1000ms;"></div>
@@ -24,8 +24,8 @@
         <div class="lane" style="top: 74px; animation-delay: 500ms;"></div>
         <div class="lane" style="top: 70px; animation-delay: 0ms;"></div>
 
-        <div><img class="tree" style="top: 200px "src="tree.png"></div>
-        <div><img class="tree" style="top: -265px; animation-delay: 1000ms;" src="tree.png"></div>
+        <div><img class="tree" style="top: 200px "src="static/tree.png"></div>
+        <div><img class="tree" style="top: -265px; animation-delay: 1000ms;" src="static/tree.png"></div>
 
         <div id="play-div" class="play">
             <button id="play" style="width:200px; height: 70px; font-size: 40px; display: flex; align-items: center; justify-content: center; font-family: Anton;" onclick="resetGame()">Play</button>
@@ -39,5 +39,5 @@
         <h1 id="high-score" style="text-align:center; font-family: Anton; font-size: 50px;">High Score: -</h1>
     </div>
 </body>
-<script src="script3.js"></script>
+<script src="scripts/script3.js"></script>
 </html>
