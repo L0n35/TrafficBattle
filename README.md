@@ -6,3 +6,4 @@ Vanilla JavaScript Game
 - Fix trees
 - Change start menu
 - Update car?
+- Animation stuff under the hood
