@@ -1,43 +1,53 @@
- <!DOCTYPE html>
- <html lang="en" onclick="">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Traffic Battle</title>
+    <meta name="description" content="Dodge the oncoming traffic in a three-lane endless driving game.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
     <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
+    <link rel="preload" as="image" href="static/car2.png">
+    <script src="scripts/game.js" defer></script>
 </head>
 <body>
-    <div id="header">
-        <h1 style="font-family: Anton; text-align: center; font-size: 50px;">Traffic Battle</h1>
-    </div>
-    <div id="game">
-        <div id="character"><img src="static/car3.png" class="car"></div>
-        <div id="block"><img src="static/car2.png" class="car"></div>
+    <main class="frame">
+        <header class="panel panel--top">
+            <h1>Traffic Battle</h1>
+            <button class="mute" id="mute" type="button" aria-pressed="false" aria-label="Mute sound" title="Mute sound (M)">🔊</button>
+        </header>
 
-        <div class="lane" style="top: -2px; animation-delay: 1500ms;"></div>
-        <div class="lane" style="top: -6px; animation-delay: 1000ms;"></div>
-        <div class="lane" style="top: -10px; animation-delay: 500ms;"></div>
-        <div class="lane" style="top: -14px; animation-delay: 0ms;"></div>
+        <div class="stage" id="stage">
+            <div class="viewport" id="viewport">
+                <div class="game" id="game">
+                    <div class="road-line road-line--upper"></div>
+                    <div class="road-line road-line--lower"></div>
 
-        <div class="lane" style="top: 82px; animation-delay: 1500ms;"></div>
-        <div class="lane" style="top: 78px; animation-delay: 1000ms;"></div>
-        <div class="lane" style="top: 74px; animation-delay: 500ms;"></div>
-        <div class="lane" style="top: 70px; animation-delay: 0ms;"></div>
+                    <img class="tree tree--top" style="--delay: 0s" src="static/tree.png" alt="">
+                    <img class="tree tree--top" style="--delay: -0.35s" src="static/tree.png" alt="">
+                    <img class="tree tree--top" style="--delay: -0.7s" src="static/tree.png" alt="">
+                    <img class="tree tree--bottom" style="--delay: -0.17s" src="static/tree.png" alt="">
+                    <img class="tree tree--bottom" style="--delay: -0.52s" src="static/tree.png" alt="">
+                    <img class="tree tree--bottom" style="--delay: -0.87s" src="static/tree.png" alt="">
 
-        <div><img class="tree" style="top: 200px "src="static/tree.png"></div>
-        <div><img class="tree" style="top: -265px; animation-delay: 1000ms;" src="static/tree.png"></div>
+                    <img class="car player" id="player" src="static/car3.png" alt="Your car">
+                    <!-- Oncoming cars are added here by game.js -->
+                </div>
 
-        <div id="play-div" class="play">
-            <button id="play" style="width:200px; height: 70px; font-size: 40px; display: flex; align-items: center; justify-content: center; font-family: Anton;" onclick="resetGame()">Play</button>
+                <div class="overlay" id="overlay">
+                    <p class="overlay__title" id="overlay-title">Ready?</p>
+                    <button class="play" id="play" type="button">Play</button>
+                    <p class="overlay__hint">Change lane with ↑ and ↓ (or W and S), or swipe up and down, or tap above or below your car</p>
+                </div>
+            </div>
         </div>
 
-    </div>
-    <div id="footer">
-        <h1 id="score" style="text-align:center; font-family: Anton; font-size: 50px;">Score: 0</h1>
-    </div>
-    <div id="footer">
-        <h1 id="high-score" style="text-align:center; font-family: Anton; font-size: 50px;">High Score: -</h1>
-    </div>
+        <footer class="panel panel--bottom">
+            <p class="score" id="score">Score: 0</p>
+            <p class="score" id="high-score">High Score: -</p>
+        </footer>
+    </main>
 </body>
-<script src="scripts/script3.js"></script>
 </html>
