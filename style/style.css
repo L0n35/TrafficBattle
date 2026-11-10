@@ -1,222 +1,231 @@
-*{
-    padding: 0;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
 }
 
-#game {
-    margin: auto;
-    width: 1000px;
+body {
+    padding: 16px;
+    font-family: Anton, Impact, sans-serif;
+    background: white;
+}
+
+.frame {
+    max-width: 1010px;
+    margin: 0 auto;
+}
+
+/* Header and score panels */
+
+.panel {
+    border: 5px solid black;
+    text-align: center;
+    padding: 4px 0;
+}
+
+.panel--top {
+    border-bottom: 0;
+}
+
+.panel--bottom {
+    border-top: 0;
+}
+
+h1 {
+    font-size: clamp(32px, 7vw, 50px);
+}
+
+.score {
+    font-size: clamp(24px, 5vw, 50px);
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+/* The game is drawn at a fixed 1000 x 500 size and scaled to fit the screen */
+
+.stage {
+    border: 5px solid black;
+}
+
+.viewport {
+    position: relative;
     height: 500px;
     overflow: hidden;
-    border: 5px solid black;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.game {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1000px;
+    height: 500px;
+    transform-origin: 0 0;
     background: linear-gradient(
-    to top,
-    green 0%,
-    green 19%,
-    white 19%,
-    white 20%,
-    gray 20%,
-    gray 80%,
-    white 80%,
-    white 81%, 
-    green 81%,
-    green 100%
-  );
-}
-
-#character {
-    z-index: 9;
-    /* background-color: limegreen; */
-    width: 200px;
-    height: 100px;
-    left: 200px;
-    position: relative;
-    right: 0px;
-    /* border-radius: 30px; */
-    /* top: 123; */
-}
-.start{
-    top: 200px;
-}
-.animateLeftMiddle {
-    animation: leftMiddle 100ms;
-    top: 200px;
-}
-.animateMiddleRight {
-    animation: middleRight 100ms;
-    top: 300px;
-}
-.animateRightMiddle {
-    animation: rightMiddle 100ms;
-    top: 201px;
-}
-.animateMiddleLeft {
-    animation: middleLeft 100ms ;
-    top: 100px;
-}
-
-.car {
-    z-index: 10;
-    width: 200px;
-    height: 100px;
-}
-
-#block {
-    z-index: 9;
-    width: 200px;
-    height: 100px;
-    /* background-color: red; */
-    position:relative;
-    left: 1000px;
-}
-.trafficLeft {
-    top: 0px;
-}
-.trafficMiddle {
-    top: 100px;
-}
-.trafficRight {
-    top: 200px;
-}
-.speed1 {
-    animation: block 2000ms linear;
-}
-.speed2 {
-    animation: block 1500ms infinite linear;
-}
-.speed3 {
-    animation: block 1000ms infinite linear;
-}
-.speed4 {
-    animation: block 750ms infinite linear;
-}
-.speed5 {
-    animation: block 500ms infinite linear;
-}
-
-
-.lane {
-    z-index: 0;
-    position: relative;
-    width: 500px;
-    height: 4px;
-    /* background-color: white; */
-    /* background-color: linear-gradient(
-        to right, 
-        white 0%,
-        white 50%,
-        black 50%,
-        black 100%
-    ); */
-    background: linear-gradient(
-        to right,
-        gray 0%,
-        gray 10%,
-        white 10%,
+        to top,
+        green 0%,
+        green 19%,
+        white 19%,
         white 20%,
         gray 20%,
-        gray 30%,
-        white 30%,
-        white 40%,
-        gray 40%,
-        gray 50%, 
-        white 50%,
-        white 60%,
-        gray 60%,
-        gray 70%,
-        white 70%,
-        white 80%,
         gray 80%,
-        gray 90%,
-        white 90%,
-        white 100%
-        
+        white 80%,
+        white 81%,
+        green 81%,
+        green 100%
     );
-    animation: laneLines 2s infinite linear;
+}
+
+.stage.is-over .game {
+    filter: grayscale(1) brightness(0.8);
+}
+
+/* Scenery: lane markings and trees scroll past at 1000px per second */
+
+.road-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: repeating-linear-gradient(
+        to right,
+        white 0 50px,
+        transparent 50px 100px
+    );
+    animation: road 100ms linear infinite;
+}
+
+.road-line--upper {
+    top: 198px;
+}
+
+.road-line--lower {
+    top: 298px;
 }
 
 .tree {
-    z-index: 0;
+    position: absolute;
+    left: 0;
     width: 30px;
     height: 50px;
-    position: relative;
-    animation: laneLines 2s infinite linear;
+    animation: scenery 1040ms linear infinite;
+    animation-delay: var(--delay, 0s);
 }
 
-@keyframes block {
-    0%{left:1000px;}
-    100%{left:-250px;}
+.tree--top {
+    top: 22px;
 }
 
-@keyframes jump {
-    0%{top: 150px;}
-    30%{top: 100px;}
-    70%{top: 100px;}
-    100%{top: 150px;}
+.tree--bottom {
+    top: 428px;
 }
 
-@keyframes leftMiddle {
-    0%{top: 100px;}
-    100%{top: 200px;}
+.stage:not(.is-running) .road-line,
+.stage:not(.is-running) .tree {
+    animation-play-state: paused;
 }
 
-@keyframes middleRight {
-    0%{top: 200px;}
-    100%{top: 300px;}
+@keyframes road {
+    to {
+        background-position: -100px 0;
+    }
 }
 
-@keyframes rightMiddle {
-    0%{top: 300px;}
-    100%{top: 200px;}
+@keyframes scenery {
+    from {
+        transform: translateX(1000px);
+    }
+    to {
+        transform: translateX(-40px);
+    }
 }
 
-@keyframes middleLeft {
-    0%{top: 200px;}
-    100%{top: 100px;}
+/* Cars */
+
+.car {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    z-index: 2;
 }
 
-@keyframes laneLines {
-    0%{left:1000px;}
-    100%{left:-1000px;}
+.player {
+    left: 200px;
+    top: 200px;
+    transition: top 100ms ease-out;
 }
 
-.gameOver {
-    margin: auto;
-    width: 1000px;
-    height: 500px;
-    background: gray;
-    overflow: hidden;
-    border: 5px solid black
+.traffic {
+    left: 1000px;
+    display: none;
 }
 
-#header {
-    margin: auto;
-    width: 1000px;
-    border-top: 5px solid black;
-    border-right: 5px solid black;
-    border-left: 5px solid black;
+/* The duration is set from game.js, based on the current level */
+.traffic.is-driving {
+    display: block;
+    animation-name: drive;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
 }
 
-#footer {
-    margin: auto;
-    width: 1000px;
-    border-bottom: 5px solid black;
-    border-right: 5px solid black;
-    border-left: 5px solid black;
+.stage.is-over .traffic {
+    animation-play-state: paused;
+}
+
+@keyframes drive {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-1250px);
+    }
+}
+
+/* Start and game-over screen */
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.overlay[hidden] {
+    display: none;
+}
+
+.overlay__title {
+    font-size: clamp(28px, 6vw, 48px);
 }
 
 .play {
-    width: 400px;
-    height: 200px;
-    position: absolute;
-    top: 330px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
+    font: inherit;
+    font-size: clamp(24px, 5vw, 40px);
+    padding: 4px 32px;
+    color: black;
     background: white;
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
     border: 5px solid black;
+    cursor: pointer;
+}
+
+.play:hover,
+.play:focus-visible {
+    color: white;
+    background: black;
+}
+
+.overlay__hint {
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
 }
