@@ -9,12 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="preload" as="image" href="static/car2.png">
     <script src="scripts/game.js" defer></script>
 </head>
 <body>
     <main class="frame">
         <header class="panel panel--top">
             <h1>Traffic Battle</h1>
+            <button class="mute" id="mute" type="button" aria-pressed="false" aria-label="Mute sound" title="Mute sound (M)">🔊</button>
         </header>
 
         <div class="stage" id="stage">
@@ -31,13 +33,13 @@
                     <img class="tree tree--bottom" style="--delay: -0.87s" src="static/tree.png" alt="">
 
                     <img class="car player" id="player" src="static/car3.png" alt="Your car">
-                    <img class="car traffic" id="traffic" src="static/car2.png" alt="Oncoming car">
+                    <!-- Oncoming cars are added here by game.js -->
                 </div>
 
                 <div class="overlay" id="overlay">
                     <p class="overlay__title" id="overlay-title">Ready?</p>
                     <button class="play" id="play" type="button">Play</button>
-                    <p class="overlay__hint">Use ↑ and ↓, or tap above or below your car, to change lane</p>
+                    <p class="overlay__hint">Change lane with ↑ and ↓ (or W and S), or swipe up and down, or tap above or below your car</p>
                 </div>
             </div>
         </div>
